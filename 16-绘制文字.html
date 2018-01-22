@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    canvas {
+      /*设置文字的对齐方式：*/
+      /*left to right 左对齐*/
+      direction:ltr;
+
+      /*right to left 右对齐*/
+      /*direction:rtl;*/
+    }
+  </style>
+
+</head>
+
+<body>
+  <canvas id="cv"></canvas>
+
+  <script>
+    var cv = document.getElementById('cv');
+    cv.height = 400;
+    cv.width = 600;
+    cv.style.border = '1px solid red';
+
+    var context = cv.getContext('2d');
+
+    // 绘制文字：
+
+    // 第一个参数：字符串类型，表示要绘制的文字内容
+    // 第二、三个参数：表示绘制到画布中的坐标
+    // strokeText(text, x, y)
+    // fillText(text, x, y)
+
+    // 设置字体
+    context.font = '30px consolas';
+
+    // 设置水平对齐方式：
+    // context.textAlign = 'center';
+    // context.textAlign = 'right';
+
+    // 设置垂直对齐方式：
+    context.textBaseline = 'middle';
+
+    // context.strokeText('皮皮虾，你们走', 100, 100);
+    context.fillText('hello', 300, 100);
+
+    // 计算文字宽度的方法
+    // obj = context.measureText('文字')
+    // obj => { width: 100 }
+
+    var w = context.measureText('文字文字').width;
+    console.log(w);
+  </script>
+</body>
+
+</html>

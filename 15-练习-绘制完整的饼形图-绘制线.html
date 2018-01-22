@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <canvas id="cv"></canvas>
+
+  <script>
+    var cv = document.getElementById('cv');
+    cv.height = 600;
+    cv.width = 800;
+    cv.style.border = '1px solid red';
+
+    var context = cv.getContext('2d');
+    var toRadian = function (angle) {
+      return angle / 180 * Math.PI;
+    };
+
+    var data = [{
+      'value': .1,
+      'color': 'orange',
+      'title': '社会招生'
+    }, {
+      'value': .1,
+      'color': 'pink',
+      'title': '公务员'
+    }, {
+      'value': .1,
+      'color': 'gray',
+      'title': '公开课'
+    }, {
+      'value': .1,
+      'color': '#abc',
+      'title': '前端'
+    }, {
+      'value': .2,
+      'color': 'red',
+      'title': '应届生'
+    }, {
+      'value': .3,
+      'color': 'blue',
+      'title': '程序员'
+    }, {
+      'value': .1,
+      'color': '#abc',
+      'title': '老司机'
+    }];
+
+    var startAngle = -90,
+      step = 0,
+      x0 = cv.width / 2,
+      y0 = cv.height / 2,
+      r = 200;
+
+    // 绘制圆饼
+    data.forEach(function (val) {
+      // 当前角度
+      step = val.value * 360;
+
+      context.beginPath();
+      context.fillStyle = val.color;
+      context.moveTo(x0, y0);
+      context.arc(x0, y0, r, toRadian(startAngle), toRadian(startAngle + step))
+      context.fill();
+
+      context.beginPath();
+      
+      // 绘制线
+      // x坐标：x0 + r * Math.cos(弧度)
+      // y坐标：y0 + r * Math.sin(弧度)
+      var lineAngle = startAngle + step / 2;
+      var lineX = x0 + (r + 50) * Math.cos(toRadian(lineAngle));
+      var lineY = y0 + (r + 50) * Math.sin(toRadian(lineAngle));
+
+      context.strokeStyle = val.color;
+      context.moveTo(x0, y0);
+      context.lineTo(lineX, lineY);
+
+      // 绘制横线
+      // 需要判断是位于左边还是右边？？？
+      // 根据线的x坐标 与 圆心点坐标的关系
+
+      // 绘制文字：
+      context.font = '25px 微软雅黑';
+      // 先设置字体再计算文字的宽度
+      var txtWidth = context.measureText(val.title).width;
+
+      if(lineX > x0) {
+        // 右边
+        context.lineTo(lineX + txtWidth + 20, lineY);
+        context.textAlign = 'left';
+        context.fillText(val.title, lineX + 20, lineY - 20);
+      } else {
+        // 左边
+        context.lineTo(lineX - txtWidth - 20, lineY);
+        context.textAlign = 'right';
+        context.fillText(val.title, lineX - 20, lineY - 20);
+      }
+
+      context.stroke();      
+
+      startAngle += step;
+    });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <canvas id="cv"></canvas>
+
+  <script>
+    var cv = document.getElementById('cv');
+    cv.height = 400;
+    cv.width = 600;
+    cv.style.border = '1px solid red';
+    
+    var context = cv.getContext('2d');
+    var toRadian = function( angle ) {
+      return angle / 180 * Math.PI;
+    };
+
+    function raf(callback, interval) {
+      var lastFrameTime = new Date();
+
+      (function render() {
+        var curFrameTime = new Date();
+        if(curFrameTime - lastFrameTime >= interval) {
+          lastFrameTime = curFrameTime;
+          callback();
+        }
+
+        requestAnimationFrame( render );
+      })();
+    };
+    
+    var startAngle = 0,
+      step = 3,
+      x = cv.width / 2,
+      y = cv.height / 2;
+    
+    // 平移:
+    context.translate(x, y);
+    // 平移之后，就是基于最新的坐标系绘制内容
+
+    raf(function() {
+      // 清空画布：
+      // 清空画布也是基于当前坐标系，因为坐标系已经旋转和平移所以，
+      // 此处，需要将坐标系设置很大的值，才能将整个画布清空
+      context.clearRect(-1000, -1000, 2000, 2000);
+      
+      // 旋转：
+      // 每次都基于上一次的坐标系进行旋转
+      context.rotate(toRadian(step));
+
+      // 绘制矩形
+      context.strokeRect(-50, -50, 100, 100);
+    }, 50);
+  </script>
+</body>
+</html>

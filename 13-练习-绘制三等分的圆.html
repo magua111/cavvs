@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <canvas id="cv"></canvas>
+
+  <script>
+    var cv = document.getElementById('cv');
+    cv.height = 400;
+    cv.width = 600;
+    cv.style.border = '1px solid red';
+
+    var context = cv.getContext('2d');
+    var toRadian = function (angle) {
+      return angle / 180 * Math.PI;
+    };
+
+    var x0 = cv.width / 2,
+      y0 = cv.height / 2,
+      r = 150,
+      startAngle = -90;
+
+    var arr = 
+      ["#CCCC99", "#CC3399","#99CC00", "#FF6666","#FFFF00",
+      "#3399CC","#CC6600","#999999","#CCCC33",
+      "#FF9933","#FFFFCC","#009933","#0099CC",
+      "#CCCCCC","#FF6666","#FF6600","#FFFF66",
+      "#009966","#CC6633","#FFCC99","#CC6600","#CC0066","#009999","#FFCC33"];
+    // var arr = ['red', 'green', 'yellow', 'blue', 'hotpink'],
+      step = 360 / arr.length;
+    
+    arr.forEach(function(color) {
+      context.beginPath();
+    
+      context.fillStyle = color;
+      context.moveTo(x0, y0);
+      context.arc(x0, y0, r, toRadian(startAngle), toRadian(startAngle+=step));
+
+      context.fill();
+    });
+
+
+    /*context.fillStyle = 'red';
+    context.moveTo(x0, y0);
+    context.arc(x0, y0, r, toRadian(-90), toRadian(30));
+
+    context.fill();
+
+    context.beginPath();
+    
+    context.fillStyle = 'green';
+    context.moveTo(x0, y0);
+    context.arc(x0, y0, r, toRadian(30), toRadian(150));
+
+    context.fill();
+
+    context.beginPath();
+    
+    context.fillStyle = 'blue';
+    context.moveTo(x0, y0);
+    context.arc(x0, y0, r, toRadian(150), toRadian(270));
+
+    context.fill();*/
+  </script>
+</body>
+
+</html>

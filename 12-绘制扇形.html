@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <canvas id="cv"></canvas>
+
+  <script>
+    var cv = document.getElementById('cv');
+    cv.height = 400;
+    cv.width = 600;
+    cv.style.border = '1px solid red';
+
+    var context = cv.getContext('2d');
+    var toRadian = function (angle) {
+      return angle / 180 * Math.PI;
+    };
+
+    /*// 绘制扇形
+    // 注意：需要先将画笔移动到圆心点，然后，再绘制
+    context.moveTo(200, 200);
+    context.arc(200, 200, 100, toRadian(0), toRadian(90));
+    // context.closePath();
+    // context.stroke();
+    context.fill();*/
+
+    // 动画绘制圆弧：
+    var startAngle = -90,
+      step = 3,
+      timer,
+      x0 = cv.width / 2,
+      y0 = cv.height / 2,
+      r = 200;
+
+    // context.fillStyle = 'rgba(255, 0, 0, 0.3)';
+
+    timer = setInterval(function () {
+      if (startAngle + step >= 270) {
+        clearInterval(timer);
+      }
+
+      // 每次都从 -90 开始绘制：
+      // 1： -90 ~ -87
+      // 2： -90 ~ -84
+      // context.clearRect(0, 0, cv.width, cv.height);
+
+      // 每次都在上一次的基础上再绘制：3度
+      // 1: -90 ~ -87
+      // 2: -87 ~ -84
+      context.beginPath();
+
+      context.moveTo(x0, y0);
+      context.arc(x0, y0, r, toRadian(startAngle), toRadian(startAngle += step));
+      context.fill();
+
+    }, 20);
+  </script>
+</body>
+
+</html>

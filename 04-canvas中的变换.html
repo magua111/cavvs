@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <canvas id="cv"></canvas>
+
+  <script>
+    var cv = document.getElementById('cv');
+    cv.height = 400;
+    cv.width = 600;
+    cv.style.border = '1px solid red';
+    
+    var context = cv.getContext('2d');
+
+    function toRadian(angle) {
+      return angle / 180 * Math.PI;
+    }
+    
+    // canvas中的变换：
+    // 1 平移变换
+    // context.translate(x, y);
+
+    // 将画布平移到 原画布坐标的（100，100）点
+    // 平移之后，原来的（100，100）就表成了 新的圆点
+    // 平移之后，再绘制的图形，就相对于新的坐标系了
+    // context.translate(100, 100);
+    // context.fillRect(0, 0, 200, 200);    
+
+    // 2 旋转变换
+    // 围绕 坐标系的原点旋转的
+    // context.rotate( 旋转的弧度 );
+
+    // context.rotate( toRadian(30) );
+    // context.fillRect(100, 100, 50, 50);
+    
+
+    // 3 缩放变换
+    // x 和 y分别表示：水平和垂直方向缩放的倍数
+    // 如果是 1   表示没有缩放，
+    // 如果是 0.5 表示 缩小了一倍
+    // 如果是 2   表示 放大了一倍
+    // context.fillRect(100, 250, 100, 100);
+    // context.scale(0.5, 0.5);
+    // context.fillRect(100, 100, 100, 100);
+    
+
+    // 变换都是对坐标系的操作
+    // 变换以后，所有的操作都是基于这个变化的！
+
+  </script>
+</body>
+</html>

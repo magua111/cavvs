@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <canvas id="cv"></canvas>
+
+  <script>
+    var cv = document.getElementById('cv');
+    cv.height = 400;
+    cv.width = 600;
+    cv.style.border = '1px solid red';
+
+    var context = cv.getContext('2d');
+
+    // 绘制网格：
+    // 1 绘制水平线
+    //  对于每一条水平线：y坐标是不变的
+    //  两条水平线：     y坐标增加了10（间距）
+
+    // 2 绘制垂直线
+
+    // 绘制水平线：
+    var step = 10;
+    // 绘制水平线的数量：
+    var xCount = cv.height / step - 1;
+    var yCount = cv.width / step - 1;
+    var x = 0;
+    var y = 0;
+
+    for(var i = 0; i < xCount; i++) {
+      y += step;
+
+      context.moveTo(0, y);
+      context.lineTo(cv.width, y);
+    }
+
+    for(var j = 0; j < yCount; j++) {
+      x += step;
+
+      context.moveTo(x, 0);
+      context.lineTo(x, cv.height);
+    }
+
+    context.stroke();
+    
+
+  </script>
+</body>
+
+</html>

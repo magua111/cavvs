@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <canvas id="cv"></canvas>
+  <!--<img src="./imgs/2.jpg" alt="">-->
+  <script>
+    var cv = document.getElementById('cv');
+    cv.height = 400;
+    cv.width = 600;
+    cv.style.border = '1px solid red';
+    
+    var context = cv.getContext('2d');
+    
+    // 绘制图片，canvas能够将一个图片绘制到当前画布中
+    // 可以通过这个方法，绘制图片、视频、其他的canvas画布
+
+    // 第一种用法：
+    // 第一个参数：是一个图片对象
+    // 第二、三个参数：绘制到画布中位置
+    // context.drawImage(imgObject, x, y);
+
+    // 第二种用法:
+    // 第一个参数：是一个图片对象
+    // 第二、三个参数：绘制到画布中位置
+    // 第4、5个参数：  绘制到画布中大小
+    // context.drawImage(imgObject, x, y, w, h);
+
+    // 第二种用法:
+    // 第一个参数：是一个图片对象
+    // 第二、三个参数：要剪裁图片中的坐标
+    // 第4、5个参数：  要剪裁图片中的大小
+    // 第6、7个参数：  要绘制到画布中的坐标
+    // 第8、9个参数：  要绘制到画布中大小
+    // context.drawImage(imgObject, imgX, imgY, imgW, imgH, cvX, cvY, cvW, cvH)
+    
+    // 创建图片对象的方式：
+    // 1 var img = new Image();
+    // 2 var img = document.createElement('img');
+
+    var img = new Image();
+    img.src = './imgs/2.jpg';
+
+    // 需要等待图片加载完成以后，才能够绘制
+    // 对于图片对象来说，监听load事件，当图片加载完成以后，
+    // 会立即执行 load的事件处理程序
+    img.onload = function() {
+      // context.drawImage(img, 100, 0);
+      // context.drawImage(img, 100, 100, 200, 170);
+
+      // 根据图片的宽高比，来缩放
+      // console.log(img.width);
+      // console.log(this.height);
+      // h / 200 = imgH / imgW
+      // context.drawImage(img, 100, 100, 400, this.height / this.width * 400);
+
+      // 剪裁图片：
+      // 160 * 100
+      // 720 , 340 
+      context.drawImage(this, 720, 340, 160, 100, 0, 0, 160 * 2, 100 * 2);
+    };
+
+  </script>
+</body>
+</html>

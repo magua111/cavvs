@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <canvas id="cv"></canvas>
+
+  <script>
+    var cv = document.getElementById('cv');
+    cv.height = 400;
+    cv.width = 600;
+    cv.style.border = '1px solid red';
+    
+    var context = cv.getContext('2d');
+    var toRadian = function( angle ) {
+      return angle / 180 * Math.PI;
+    };
+    
+    
+    var startAngle = 0,
+      step = 3,
+      x = cv.width / 2,
+      y = cv.height / 2;
+
+    setInterval(function() {
+      // 保存状态
+      context.save();
+
+      // 绘制内容的时候，每次都是基于默认的绘制状态的！
+      
+      // 清除画布中的内容
+      context.clearRect(0, 0, cv.width, cv.height);
+      context.translate(x, y);
+      context.rotate(toRadian(startAngle+=step));      
+
+      // 绘制正方形：
+      context.strokeRect(-50, -50, 100, 100);
+
+      // 恢复状态
+      context.restore();
+    }, 50);
+
+  </script>
+</body>
+</html>

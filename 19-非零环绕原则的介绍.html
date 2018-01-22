@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <canvas id="cv"></canvas>
+
+  <script>
+    var cv = document.getElementById('cv');
+    cv.height = 400;
+    cv.width = 600;
+    cv.style.border = '1px solid red';
+
+    var context = cv.getContext('2d');
+    
+    // 非零环绕原则：
+    // 决定某一个区域是否被填充，遵循以下步骤：
+    // 1 从当前区域中拉出一条射线，穿过整个图形，让射线与图形的边相交
+    // 2 以射线的起始点为圆心，顺着相交点图形中绘制的方向，画一个相切的圆
+    // 3 如果绘制圆是顺时针方向，就记为：+1
+    // 4 如果绘制圆是逆时针方向，就记为：-1
+    // 5 将所有相交的值相加，最终得到的值，如果为 0 ，就说明这个区域不会被填充
+    //                                  如果不为0，则这个区域被填充
+
+    // 外层的正方形：顺时针绘制
+    // 内层的正方形：逆时针绘制
+    // 起始点坐标：100，100
+    // 大正方形边长：200
+    // 小正方形边长：100
+    
+    context.moveTo(100, 100);
+    context.lineTo(300, 100);
+    context.lineTo(300, 300);
+    context.lineTo(100, 300);
+    context.lineTo(100, 100);
+
+    context.moveTo(150, 150);
+    context.lineTo(150, 250);
+    context.lineTo(250, 250);
+    context.lineTo(250, 150);
+    context.lineTo(150, 150);
+        
+    context.fill();
+    
+  </script>
+</body>
+
+</html>

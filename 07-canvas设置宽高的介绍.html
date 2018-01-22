@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    canvas {
+      border: 1px solid red;
+
+      height: 400px;
+      width: 600px;
+    }
+  </style>
+</head>
+
+<body>
+  <!--<canvas id="cv" height="400" width="600"></canvas>-->
+  <canvas id="cv1"></canvas>
+  <canvas id="cv2"></canvas>
+
+  <script>
+    // 如何给canvas标签设置宽度和高度？？？
+    // 1 通过html标签的 height 和width 属性来设置
+    // 2 通过 DOM对象的 height 和width 属性来设置
+
+    // 通过标准的方式来设置canvas画布的宽高实际上是在设置画布中像素点的高度
+    // 比如：设置高度为：400，就是说明在canvas画布的垂直方向有 400个像素点
+    // 而通过样式来设置宽度和高度，没有改变像素点的个数，而是把每一个像素点
+    // 拉伸或者缩小了！
+
+    var cv1 = document.getElementById('cv1');
+    cv1.height = 400;
+    cv1.width = 600;
+
+    var context1 = cv1.getContext('2d');
+    context1.moveTo(100, 100);
+    context1.lineTo(300, 100);
+    context1.stroke();
+
+    // 注意：不能通过 style 样式来设置宽度和高度
+    /*var cv2 = document.getElementById('cv2');
+    var context2 = cv2.getContext('2d');
+    context2.moveTo(100, 100);
+    context2.lineTo(300, 100);
+    context2.stroke();*/
+  </script>
+
+</body>
+
+</html>

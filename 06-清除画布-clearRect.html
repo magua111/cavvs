@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <canvas id="cv"></canvas>
+
+  <script>
+    var cv = document.getElementById('cv');
+    cv.height = 400;
+    cv.width = 600;
+    cv.style.border = '1px solid red';
+    
+    var context = cv.getContext('2d');
+    
+    context.fillRect(100, 100, 200, 100);
+    
+    // clearRect(x, y, w, h)
+    // 作用：清除画布中绘制的内容，不会对路径产生影响
+    context.clearRect(150, 150, 50, 50);
+
+    // 如何将整个画布清空？？？
+    context.clearRect(0, 0, cv.width, cv.height);
+
+    context.fillRect(100, 100, 200, 100);
+    
+    // canvas中使用清除画布的思路：
+    // 将画布全部清空，然后再绘制
+    // 再复杂的图形（游戏），也是通过这种方式：先清空整个画布然后再绘制下一帧的内容
+    // 这样，我们就看到动画效果了！
+    
+  </script>
+</body>
+</html>

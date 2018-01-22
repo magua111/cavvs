@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <canvas id="cv"></canvas>
+
+  <script>
+    var cv = document.getElementById('cv');
+    cv.height = 400;
+    cv.width = 600;
+    cv.style.border = '1px solid red';
+    
+    var context = cv.getContext('2d');
+    
+    // 1 lineWidth 用来设置线的宽度，默认值为：1
+
+    // 2 closePath() 用来将绘制的路径闭合
+    // 在起始点和结束点之前做一条连线
+
+    // 3 绘制矩形：
+    // rect(x, y, w, h)         描绘路径，配合stroke / fill 绘制
+    // 
+    // fillRect()     没有路径
+    // strokeRect()
+
+    // 4 清除矩形
+    // clearRect()    擦出画布中展示的内容，不会对路径产生影响
+
+    // 5 绘制圆弧
+    // arc(x, y, radius, startRadian, endRadian[, counterclockwise])
+    
+    
+  </script>
+</body>
+</html>

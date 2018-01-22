@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <!--1 创建一个canvas标签-->
+  <canvas id="cv"></canvas>
+  <script>
+    // canvas的使用步骤：
+    // 1 创建一个canvas标签
+    // 2 获取到canvas DOM对象
+    // 3 获取到绘制上下文
+    // 4 使用上下文（对象）中提供的属性和方法来进行内容的绘制
+    var cv = document.getElementById('cv');
+
+    // 获取到绘制上下文（对象）
+    // ctx 是一个对象，对象中包含了绘制的所有属性和方法
+    var ctx = cv.getContext('2d');
+
+    // 将画笔移动到画布中的某个坐标，设置起始点
+    // 第一个参数表示：x坐标
+    // 第二个参数表示：y坐标
+    ctx.moveTo(100, 100);
+
+    // 绘制一条线
+    // 第一个参数表示：x坐标
+    // 第二个参数表示：y坐标
+    ctx.lineTo(300, 100);
+
+    // 描边，将描绘的路径绘制到画布中！
+    ctx.stroke();
+    
+  </script>
+
+</body>
+
+</html>

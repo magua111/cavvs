@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <canvas id="cv"></canvas>
+
+  <script>
+    var cv = document.getElementById('cv');
+    cv.height = 400;
+    cv.width = 600;
+    cv.style.border = '1px solid red';
+    
+    var context = cv.getContext('2d');
+    var toRadian = function( angle ) {
+      return angle / 180 * Math.PI;
+    };
+    
+    // 1 绘制整圆：
+    // context.arc(cv.width / 2, cv.height / 2, 200, 0, Math.PI * 2);
+    // context.stroke();
+
+    // 动画绘制圆弧：
+    var startAngle = -90,
+      step = 3,
+      timer,
+      x0 = cv.width / 2,
+      y0 = cv.height / 2,
+      r = 200;
+
+    
+    timer = setInterval(function() {
+      if(startAngle >= 270) {
+        clearInterval(timer);
+      }
+
+      // 每次都从 -90 开始绘制：
+      context.clearRect(0, 0, cv.width, cv.height);
+
+      // 每次都在上一次的基础上再绘制：3度
+      // context.beginPath();
+      
+      // startAngle += step
+      // startAngle = startAngle + step
+      context.arc(x0, y0, r, toRadian(startAngle), toRadian(startAngle += step));
+      context.stroke();
+      // context.fill();
+      
+    }, 20);
+    
+  </script>
+</body>
+</html>

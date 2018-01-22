@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <canvas id="cv"></canvas>
+
+  <script>
+    var cv = document.getElementById('cv');
+    cv.height = 400;
+    cv.width = 600;
+    cv.style.border = '1px solid red';
+
+    var context = cv.getContext('2d');
+
+    // 每次绘制一条竖线，每次都是在上一次的基础上向右移动一像素
+    // 起始点坐标：100，100
+    // 线的长度：100
+    
+    var x = 100;
+    
+    for(var i = 0; i < 256; i++) {
+      // 开启新路径
+      context.beginPath();
+
+      context.moveTo(x, 100);
+      context.lineTo(x, 200);
+      // 红色：（255, 0, 0）
+      // 蓝色：（0, 0, 255）
+      context.strokeStyle='rgb(' +(255-i)+ ', 0, ' + i + ')';
+      
+      context.stroke();
+      x++;
+    }
+
+    // context.stroke();
+    
+  </script>
+</body>
+
+</html>

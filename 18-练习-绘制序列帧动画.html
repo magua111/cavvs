@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <canvas id="cv"></canvas>
+
+  <script>
+    var cv = document.getElementById('cv');
+    cv.height = 400;
+    cv.width = 600;
+    cv.style.border = '1px solid red';
+    
+    var context = cv.getContext('2d');
+    
+    // 1 创建图片对象
+    var img = new Image();
+    img.src = './imgs/NPCrabbitbaby-2.png';
+
+    // 2 等待图片加载完成
+    img.onload = function() {
+      var imgW = this.width / 4,
+        imgH = this.height / 4,
+        frameIndex = 0;
+      
+      var x = 200;
+      
+      setInterval(function() {
+        if(frameIndex > 3) {
+          frameIndex = 0;
+        }
+
+        context.clearRect(0, 0, cv.width, cv.height);
+        context.drawImage(img, imgW * frameIndex++, imgH * 2, imgW, imgH, x+=5, 200, imgW * 2, imgH * 2);
+      }, 200);
+
+      // context.drawImage(this, imgW * 0, 0, imgW, imgH, 200, 200, imgW, imgH);
+      // context.drawImage(this, imgW * 1, 0, imgW, imgH, 200, 200, imgW, imgH);
+      // context.drawImage(this, imgW * 2, 0, imgW, imgH, 200, 200, imgW, imgH);
+      // context.drawImage(this, imgW * 3, 0, imgW, imgH, 200, 200, imgW, imgH);
+    };
+
+
+    // 重点：
+    // 
+    // clearRect()
+    // arc()
+    // rect() / fillRect() / strokeRect()
+    // drawImage()
+    // fillText() / strokeText() / textAlign / textBaseline / measureText()
+    
+  </script>
+</body>
+</html>

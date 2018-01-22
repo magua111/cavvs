@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <canvas id="cv"></canvas>
+
+  <script>
+    var cv = document.getElementById('cv');
+    cv.height = 400;
+    cv.width = 600;
+    cv.style.border = '1px solid red';
+
+    var context = cv.getContext('2d');
+    var toRadian = function (angle) {
+      return angle / 180 * Math.PI;
+    };
+
+    // 1 requestAnimationFrame(callback)
+    // HTML5中提供的用来实现动画效果的函数
+    // window.requestAnimationFrame()
+
+    // requestAnimationFrame() 
+    // 方法调用一次，执行一次，如果不调用了
+    // 下一次浏览器渲染的时候，就不会再执行回调函数中的代码
+
+    /*(function render() {
+
+      requestAnimationFrame(render);
+    })();*/
+    
+    function raf(callback, delta) {
+      var lastFrameTime = new Date();
+
+      (function render() {
+        var curFrameTime = new Date();
+        if(curFrameTime - lastFrameTime >= delta) {
+          callback();
+          lastFrameTime = curFrameTime;
+        }
+
+        requestAnimationFrame(render);
+      })();
+
+    }
+
+    raf(function() {
+      // DOM操作，例如：动画效果
+    }, 100);
+
+    // canvas中的变换
+    // 1 平移变换
+    // context.translate(x, y);
+    
+    // 2 旋转变换
+    // context.rotate(弧度);
+    
+    // 3 缩放变换
+    // context.scale(x, y);
+    
+    // 都是坐标系的改变，这三个方法也属于绘制状态
+
+
+    // 状态的保持和恢复
+    // 
+    // save()         将当前的状态保存起来
+    // restore()      恢复到上一次save的状态
+
+    // save() 保存状态是按照 栈 结构保存的
+    // 最佳实践：save 和 restore 成对使用
+
+    // canvas中的绘图是基于状态绘图的
+    // 路径 和 状态 是没有联系的！
+
+  </script>
+</body>
+
+</html>

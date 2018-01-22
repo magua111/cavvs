@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <canvas id="cv"></canvas>
+
+  <script>
+    var cv = document.getElementById('cv');
+    cv.height = 400;
+    cv.width = 600;
+    cv.style.border = '1px solid red';
+
+    var context = cv.getContext('2d');
+
+    // 绘制折线图：
+    // 1 绘制坐标轴
+    // 2 绘制折线
+
+    // 到画布边界的距离
+    var padding = 20;
+    // 箭头的长度
+    var arrowLen = 10;
+    // 计算y轴的长度
+    var yLen = cv.height - 2 * padding;
+    // 计算x轴的长度
+    var xLen = cv.width - 2 * padding;
+
+    // 绘制y轴的轴
+    context.moveTo(padding, padding);
+    context.lineTo(padding, yLen + padding);
+    // 绘制y轴的箭头
+    context.moveTo(padding, padding);
+    context.lineTo(padding - arrowLen, padding + arrowLen);
+    context.moveTo(padding, padding);
+    context.lineTo(padding + arrowLen, padding + arrowLen);
+
+    // 绘制x轴的轴
+    context.moveTo(padding, yLen + padding);
+    context.lineTo(padding + xLen, yLen + padding);
+    context.lineTo(padding + xLen - arrowLen, yLen + padding - arrowLen);
+    context.moveTo(padding + xLen, yLen + padding);
+    context.lineTo(padding + xLen - arrowLen, yLen + padding + arrowLen);    
+    
+    context.stroke();
+
+
+    // 折线图的数据：
+    // var data = [0.3, 0.4, 0.5, 0.2, 0.65, 0.8];
+    // 这些数据表示占据y坐标的高度
+    
+  </script>
+</body>
+
+</html>

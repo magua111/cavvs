@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <canvas id="cv"></canvas>
+
+  <script>
+    var cv = document.getElementById('cv');
+    cv.height = 400;
+    cv.width = 600;
+    cv.style.border = '1px solid red';
+    
+    var context = cv.getContext('2d');
+    
+    // 绘制圆弧
+    // 第一、二个参数：分别表示圆心点的x和y坐标
+    // 第三个参数：表示半径
+    // 第四个参数: 表示起始弧度
+    // 第五个参数：表示结束弧度
+    // 第六个参数：表示绘制的方向，如果为false，表示顺时针；如果为true，表示逆时针
+    //                           默认值为：false，可省略！
+    // context.arc(x, y, r, startRadian, endRadian, counterclockwise);
+
+    // 这个方法也是在描绘路径
+    // context.arc(100, 100, 100, toRadian(0), toRadian(90));
+    // context.arc(100, 100, 100, toRadian(90), toRadian(180));
+    // context.arc(100, 100, 100, toRadian(0), toRadian(270));
+    // context.arc(100, 100, 100, toRadian(-90), toRadian(0));
+
+    // 逆时针绘制：
+    // context.arc(100, 100, 100, toRadian(0), toRadian(90), true);
+    context.stroke();
+
+    // 0度角：在水平方向向右的位置
+    
+
+    // 弧度 和 角度的转换：
+    // 1弧度 = 180度
+    // 弧度用：π 表示
+    // 在js中 通过 Math.PI 获取到 π
+    // Math.PI 表示 1弧度
+
+    // 弧度 / Math.PI = 角度 / 180
+
+
+    // 角度 转 弧度：
+    // 弧度 = 角度 / 180 * Math.PI
+    function toRadian(angle) {
+      return angle / 180 * Math.PI;
+    }
+
+    // 弧度 转 角度：
+    // 角度 = 弧度 / Math.PI * 180
+    function toAngle(radian) {
+      return radian / Math.PI * 180;
+    }
+
+  </script>
+</body>
+</html>

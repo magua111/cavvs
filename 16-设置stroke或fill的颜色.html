@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <canvas id="cv"></canvas>
+
+  <script>
+    var cv = document.getElementById('cv');
+    cv.height = 400;
+    cv.width = 600;
+    cv.style.border = '1px solid red';
+
+    var context = cv.getContext('2d');
+
+    // 绘制正方形：
+    context.moveTo(100, 100);
+    context.lineTo(200, 100);
+    context.lineTo(200, 200);
+    context.lineTo(100, 200);
+    context.lineTo(100, 100);
+
+    // 设置描边的颜色：
+    // strokeStyle的取值与fillStyle的取值相同
+    context.strokeStyle = 'red';
+
+    // stroke() 作用：将描绘好的所有路径，绘制到当前画布中
+    context.stroke();
+
+    // 设置填充颜色：
+    // fillStyle 的取值与 css 中 color 的取值是相同的！
+    // context.fillStyle = 'red';
+    // context.fillStyle = '#abc';
+    // context.fillStyle = 'rgb(255, 0, 0)';
+    // context.fillStyle = 'rgba(255, 0, 0, 0.3)';
+
+    // 作用：将描绘好的所有路径，通过填充的形式绘制到画布中
+    // context.fill();
+  </script>
+</body>
+
+</html>

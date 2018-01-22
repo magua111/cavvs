@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <canvas id="cv"></canvas>
+
+  <script>
+    var cv = document.getElementById('cv');
+    cv.height = 400;
+    cv.width = 600;
+    cv.style.border = '1px solid red';
+
+    var context = cv.getContext('2d');
+    var toRadian = function (angle) {
+      return angle / 180 * Math.PI;
+    };
+
+    // canvas 是基于状态绘图的！
+
+    // context.save()     保存绘制状态
+    // context.restore()  恢复到上一次保存的状态
+    // 
+    // 一般情况下，这两个方法都是成对出现的
+    // 
+    // 推荐的做法：
+    // 1 在没有修改状态以前，先保存状态（保存默认状态）
+    // 2 接下来可能有一些状态的修改
+    // 3 最后，调用 restore() 将状态恢复到默认的状态
+
+    // 练习：
+    // 绘制一条 10px 红色的线
+    // 绘制一条 1px 黑色的线
+
+    // 保存默认状态
+    context.save();
+
+    // 修改状态
+    context.strokeStyle = 'red';
+    context.lineWidth = 10;
+
+    context.moveTo(100, 100);
+    context.lineTo(300, 100);
+    context.stroke();
+
+    context.beginPath();
+
+    // 恢复到上一次保存的状态（默认）
+    context.restore();
+
+    context.moveTo(100, 150);
+    context.lineTo(300, 150);
+
+    context.stroke();
+
+
+    /*context.strokeStyle = 'red';
+    context.lineWidth = 10;
+
+    context.moveTo(100, 100);
+    context.lineTo(300, 100);
+
+    context.stroke();
+
+    context.beginPath();
+    
+    context.strokeStyle = 'black';
+    context.lineWidth = 1;
+
+    context.moveTo(100, 150);
+    context.lineTo(300, 150);
+
+    context.stroke();*/
+
+
+
+    // 什么是状态？？？
+    // lineWidth / strokeStyle / fillStyle / font
+    // translate() / rotate() / scale()
+
+    // canvas每一次绘制，都会读取以上这些状态，然后，在来进行绘制！
+
+    /*context.lineWidth = 10;
+    context.strokeStyle='red';
+
+
+    context.moveTo(100, 100);
+    context.lineTo(300, 100);
+    // context.stroke();
+
+    
+    context.moveTo(100, 100);
+    context.lineTo(300, 100);
+    context.stroke();*/
+  </script>
+</body>
+
+</html>

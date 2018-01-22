@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <canvas id="cv"></canvas>
+
+  <script>
+    // canvas的上下文介绍：
+    var cv = document.getElementById('cv');
+
+    // 获取上下文
+    // 2d 表示 2维图形，其实就是：平面图形
+    var context = cv.getContext('2d');
+    // CanvasRenderingContext2D 是构造函数
+    // context 是 CanvasRenderingContext2D 的实例对象
+    console.log(context);
+    
+    // 理解上下文：
+    // 上下文就是一个对象，对象中包含了绘制的属性和方法
+    
+    // 上下文相当于 画图 中的工具栏，
+    // 所有画图的工具（属性和方法）都可以通过它找到！
+
+
+    // 获取 3d 绘制上下文
+    var cv = document.createElement("canvas");
+    // opengl
+    console.log(cv.getContext("webgl"));
+
+  </script>
+</body>
+
+</html>

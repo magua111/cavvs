@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <canvas id="cv"></canvas>
+
+  <script>
+    // 边长为：100
+    // 两个图形的间距：100
+    // 第一个图形的坐标：（100, 100）
+
+    var cv = document.getElementById('cv');
+    cv.height = 400;
+    cv.width = 600;
+    cv.style.border = '1px solid red';
+
+    var context = cv.getContext('2d');
+
+    // 绘制正方形：
+    context.moveTo(100, 100);
+    context.lineTo(200, 100);
+    context.lineTo(200, 200);
+    context.lineTo(100, 200);
+    context.lineTo(100, 100);
+
+    // 绘制三角形：
+    context.moveTo(300, 100);
+    context.lineTo(300, 200);
+    context.lineTo(400, 200);
+    context.lineTo(300, 100);
+
+    // 绘制梯形：
+    context.moveTo(500, 100);
+    context.lineTo(500, 200);
+    context.lineTo(600, 200);
+    context.lineTo(550, 100);
+    context.lineTo(500, 100);
+
+    context.stroke();
+  </script>
+
+</body>
+
+</html>

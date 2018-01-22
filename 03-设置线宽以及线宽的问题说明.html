@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <canvas id="cv"></canvas>
+
+  <script>
+    var cv = document.getElementById('cv');
+    cv.height = 400;
+    cv.width = 600;
+    cv.style.border = '1px solid red';
+
+    var context = cv.getContext('2d');
+
+    // canvas中绘制线，是以当前坐标的中心点为参考点，然后，分别想两边进行扩展
+    // 设置线宽，默认值为：1
+    context.lineWidth = 1;
+    context.moveTo(100, 10);
+    context.lineTo(200, 10);
+    context.stroke();
+
+    context.beginPath();
+        
+    context.lineWidth = 2;
+    context.moveTo(100, 20);
+    context.lineTo(200, 20);
+    context.stroke();
+
+    // 如何绘制一条1像素宽的线？？？
+    context.lineWidth = 1;
+    context.moveTo(100, 30.5);
+    context.lineTo(200, 30.5);
+    context.stroke();
+    
+  </script>
+</body>
+
+</html>

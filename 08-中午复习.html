@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <script>
+    // 1 类型的判断
+    // 借用Object.prototype.toString方法实现，类型的判断
+    function getType(obj) {
+      return Object.prototype.toString.call(obj).slice(8, -1).toLowerCase();
+    }
+
+    var type = getType([]); // array
+    var type = getType({}); // object
+
+    // 2 iframe
+    // 作用：能够将其他页面引入到当前页面中
+    // window.self 一直指向的都是当前页面中的window 
+    // window.top  指向最顶层的window
+    // 防止页面嵌套：
+    /*if(window.top !== window.self) {
+      window.top.location = window.self.location;
+    }*/
+
+    if(top !== self) {
+      top.location = self.location;
+    }
+
+    // 3 数据驱动思想，以数据为核心
+
+    // 4 tab切换案例： 面向对象 + this + 沙箱模式 + 严格模式
+
+    // 5 canvas
+    // 5.1 canvas 就是 HTML5中提供的一个新标签，作用：展示内容
+    // 5.2 上下文对象，所有跟绘制相关的属性和方法，都可以通过这个对象获取到
+    // 5.3 设置宽高
+    //    a. 通过html属性 <canvas height="600" width="400"></canvas>
+    //    b. 通过DOM的 height或width 属性
+    //        cv.height / cv.width
+
+    // 这种方式： cv.style.height 也是修改的css样式，也不行！！！
+
+    // canvas的基本使用：
+    // 1 创建一个canvas标签
+    // 2 获取到canvas 的DOM对象
+    // 3 通过DOM对象获取到绘制上下文
+    // 4 通过 绘制上下文 中提供的方法进行绘制
+
+    // 1 cv.getContext('2d'); 获取上下文对象
+    // 2 ctx.moveTo(x, y);
+    // 3 ctx.lineTo(x, y);
+    // 4 ctx.stroke();
+
+  </script>
+
+</body>
+
+</html>

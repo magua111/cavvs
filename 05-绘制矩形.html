@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <canvas id="cv"></canvas>
+
+  <script>
+    var cv = document.getElementById('cv');
+    cv.height = 400;
+    cv.width = 600;
+    cv.style.border = '1px solid red';
+    
+    var context = cv.getContext('2d');
+    
+    // 绘制矩形的方法：
+
+    // 第一个参数：表示起始点x坐标
+    // 第二个参数：表示起始点y坐标
+    // 第三个参数：表示矩形的宽度
+    // 第四个参数：表示矩形的高度
+    // 这个方法也是在描绘路径
+    // context.rect(x, y, w, h);
+    /*context.rect(100, 100, 200, 100);
+    
+    // context.fill();
+    context.stroke();*/
+    
+    // 快速绘制矩形的方法：
+    // strokeRect(x, y, w, h)  直接绘制描边矩形
+    // fillRect(x, y, w, h)    直接绘制填充矩形
+    // 这个两个方法不会产生路径
+    context.strokeRect(100, 100, 200, 100);
+    context.fillRect(100, 300, 200, 100);
+    
+    context.fill();
+
+  </script>
+</body>
+</html>

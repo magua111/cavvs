@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <canvas id="cv"></canvas>
+
+  <script>
+    var cv = document.getElementById('cv');
+    cv.height = 400;
+    cv.width = 600;
+    cv.style.border = '1px solid red';
+
+    var context = cv.getContext('2d');
+
+    // 作用：开启新路径，开启新的路径以后，与原来描绘的路径就没有关系了！
+    // 
+    // context.beginPath();
+
+    // 绘制正方形1：
+    context.moveTo(100, 100);
+    context.lineTo(200, 100);
+    context.lineTo(200, 200);
+    context.lineTo(100, 200);
+    context.lineTo(100, 100);
+    
+    // stroke() 作用：将描绘好的所有路径，绘制到当前画布中
+    context.stroke();
+
+    
+    // 开启新路径，后面再调用 fill() 方法，只对
+    // beginPath() 以后，再描绘的新路径起作用，原来的路径是不会再重新被fill()的！
+    context.beginPath();
+
+    // 绘制正方形2：
+    context.moveTo(100, 300);
+    context.lineTo(200, 300);
+    context.lineTo(200, 400);
+    context.lineTo(100, 400);
+    context.lineTo(100, 300);
+        
+    // 作用：将描绘好的所有路径，通过填充的形式绘制到画布中
+    context.fill();
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <script>
+    // 封装函数：
+    /*var raf = function(callback, interval) {
+      // 上一帧的时间
+      var lastFrameTime = new Date();
+
+      // render每隔 16.67ms 左右，就来调用一次
+      // 每一次render调用都要判断时间间隔是否达到指定的 interval，
+      // 如果达到了就调用 callback();
+      var render = function() {
+        // 当前帧的时间
+        var curFrameTime = new Date();
+        // 判断 是否达到时间间隔
+        if(curFrameTime - lastFrameTime >= interval) {
+          // 将当前帧时间 赋值给 上一帧时间
+          lastFrameTime = curFrameTime;
+          // 调用callback
+          callback();
+        }
+        // 每次调用callback都需要判断时间是否达到 interval 指定的时间
+        // callback();
+        requestAnimationFrame( render );
+      };
+      render();
+
+    };*/
+    
+    // 模拟 setInterval 
+    var raf = function(callback, interval) {
+      var lastFrameTime = new Date();
+
+      (function render() {
+        var curFrameTime = new Date();
+        if(curFrameTime - lastFrameTime >= interval) {
+          lastFrameTime = curFrameTime;
+          callback();
+        }
+
+        requestAnimationFrame( render );
+      })();
+    };
+
+    raf(function() {
+      console.log('模拟定时器');
+    }, 1000);
+  </script>
+
+</body>
+
+</html>

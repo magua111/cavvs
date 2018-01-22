@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style type="text/css">
+    .container {
+      width: 400px;
+      height: 200px;
+      border: 1px dotted red;
+      margin: 100px auto;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <canvas id="c"></canvas>
+  </div>
+  <script>
+    var cv = document.getElementById('c');
+    var context = cv.getContext('2d');
+
+    cv.width = 400;
+    cv.height = 200;
+
+    // 奖品设置
+    var prizesArr = [
+      { name: 'iPhone7 亮黑版', color: 'rgba(0, 0, 0, 1)' },
+      { name: 'iPhone7 黑色版', color: 'rgba(0, 0, 0, .9)' },
+      { name: 'iPhone7 安卓版', color: 'rgba(0, 255, 0, 1)' },
+      { name: 'iPhone7 塞班版', color: 'rgba(255, 0, 0, 1)' },
+      { name: '骑皮皮虾一次', color: 'rgba(255, 100, 66, 1)' }
+    ];
+
+    // 1 随机生成奖品
+    // Math.random() ==> [0, 1)
+    // Math.random() * 5  ==> [0, 5)
+    // Math.floor(Math.random() * 5)  ==> 0,1,2,3,4
+
+    var prize = prizesArr[Math.floor(Math.random() * prizesArr.length)];
+    // console.log(prize);
+
+    // 绘制奖品信息
+    context.font = '40px 微软雅黑';
+    context.textAlign = 'center';
+    context.textBaseline = 'middle';
+    context.fillText(prize.name, cv.width / 2, cv.height / 2);
+
+    // 绘制遮罩层
+    context.fillStyle = 'silver';
+    context.fillRect(0, 0, cv.width, cv.height);
+
+    // 重叠的部分变为透明：
+    // context.globalCompositeOperation='destination-out';
+
+    // 默认值：
+    // context.globalCompositeOperation='source-over';
+
+    var flag = false;
+    // 鼠标按下：
+    cv.addEventListener('mousedown', function () {
+      flag = true;
+      context.globalCompositeOperation = 'destination-out';
+    });
+
+    // 鼠标移动：
+    cv.addEventListener('mousemove', function (e) {
+      if (!flag) return;
+
+      // console.log(123);
+      // 绘制小圆，坐标根据当前鼠标的坐标
+      // console.log(e.offsetX, e.offsetY);
+
+      // 获取绘制擦除区域的坐标
+      var x = e.pageX - cv.offsetLeft,
+        y = e.pageY - cv.offsetTop;
+      // console.log(x, y);
+
+      context.beginPath();
+      context.arc(x, y, 20, 0, Math.PI * 2);
+      context.fill();
+    });
+
+    // 鼠标抬起：
+    cv.addEventListener('mouseup', function () {
+      flag = false;
+      context.globalCompositeOperation = 'source-over';
+    });
+  </script>
+</body>
+
+</html>

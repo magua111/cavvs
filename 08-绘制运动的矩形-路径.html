@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <canvas id="cv"></canvas>
+
+  <script>
+    var cv = document.getElementById('cv');
+    cv.height = 400;
+    cv.width = 600;
+    cv.style.border = '1px solid red';
+    
+    var context = cv.getContext('2d');
+    
+    var x = 100,        // 起始点x坐标
+      step = 3,         // 步长
+      targetX = 400,    // 目标位置
+      timer = null;     // 定时器id
+    
+    timer = setInterval(function() {
+      if(x >= targetX) {
+        clearInterval(timer);
+      }
+
+      // 清除内容
+      context.clearRect(0, 0, cv.width, cv.height);
+      // 开启路径
+      context.beginPath();
+
+      context.rect(x += step, 100, 100, 100);
+      context.fill();
+    }, 20);
+
+  </script>
+</body>
+</html>
